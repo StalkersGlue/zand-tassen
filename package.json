@@ -4,14 +4,14 @@
   "description": "Sandbaggers Guide To Watopia",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc | cp src/index.html build/ | cp -ri node_modules/ build/node_modules/",
     "build:watch": "tsc --watch",
     "clean": "rimraf my-element.{d.ts,d.ts.map,js,js.map} test/my-element.{d.ts,d.ts.map,js,js.map} test/my-element_test.{d.ts,d.ts.map,js,js.map}",
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:lit-analyzer": "lit-analyzer",
     "format": "prettier src/* --write",
-    "serve": "es-dev-server --node-resolve --watch",
+    "serve": "es-dev-server --root-dir build/ --node-resolve --watch",
     "checksize": "rollup -c ; cat my-element.bundled.js | gzip -9 | wc -c ; rm my-element.bundled.js"
   },
   "keywords": [

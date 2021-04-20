@@ -3,10 +3,10 @@
     "target": "es2017",
     "module": "es2015",
     "lib": ["es2017", "dom", "dom.iterable"],
-    "declaration": true,
-    "declarationMap": true,
+    "declaration": false,
+    "declarationMap": false,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./build",
     "rootDir": "./src",
     "strict": true,
     "noUnusedLocals": true,
@@ -24,6 +24,8 @@
       }
     ]
   },
-  "include": ["src/**/*.ts"],
-  "exclude": []
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": ["src/old"]
 }

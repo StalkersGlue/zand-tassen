@@ -94,7 +94,6 @@ export class AverageValues extends LitElement {
       StorageService.CYCLING_POWER_KEY,
       (statistics) => {
         this.averagePower = statistics.average;
-        console.log(this.averagePower > this.powerLimit);
         this.style.setProperty(
           "--bg",
           this.averagePower > this.powerLimit ? "red" : "#0093d1"
