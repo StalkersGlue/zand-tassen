@@ -88,9 +88,9 @@ export class CyclingPowerMonitor extends LitElement {
       );
 
       this.averageHeartRate = statistics.average;
-      this.timeSpanInSeconds = statistics.timeSpanInSeconds;
+      // this.timeSpanInSeconds = statistics.timeSpanInSeconds;
       this.totalEvents = statistics.total;
-      this.eventsPerSecond = statistics.eventsPerSecond;
+      // this.eventsPerSecond = statistics.eventsPerSecond;
     });
   }
 }

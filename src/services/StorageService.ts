@@ -50,20 +50,20 @@ export class StorageService {
     const minutes: number = 30000 * timeOffsetInMinutes;
     const twentyMinutesPast = Date.now().valueOf() - minutes;
     const filtered = measurements.filter(
-      (measurement) => measurement.timestamp > twentyMinutesPast
+      ({timestamp}) => timestamp > twentyMinutesPast
     );
     let sum = 0;
-    filtered.map((x) => (sum += x.measurement));
-    const start = Math.round(filtered[0].timestamp / 30000);
-    const end = Math.round(filtered[filtered.length - 1].timestamp / 30000);
-    const timeSpanInSeconds =
-      (filtered[filtered.length - 1].timestamp - filtered[0].timestamp) / 1000;
+    filtered.map(({measurement}) => (sum += measurement));
+    // const start = Math.round(filtered[0].timestamp / 30000);
+    // const end = Math.round(filtered[filtered.length - 1].timestamp / 30000);
+    // const timeSpanInSeconds =
+    //   (filtered[filtered.length - 1].timestamp - filtered[0].timestamp) / 1000;
     return {
-      average: Math.round(sum / filtered.length),
-      timeSpanInSeconds: Math.round(timeSpanInSeconds),
+      average: filtered.length > 0 ? Math.round(sum / filtered.length) : 0,
+      // timeSpanInSeconds: Math.round(timeSpanInSeconds),
       total: filtered.length,
-      eventsPerSecond:
-        Math.round((((end - start) * 60) / filtered.length) * 100) / 100,
+      // eventsPerSecond:
+      //   Math.round((((end - start) * 60) / filtered.length) * 100) / 100,
     };
   }
 

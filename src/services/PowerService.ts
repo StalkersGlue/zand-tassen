@@ -32,7 +32,11 @@ export class PowerService {
     characteristic?.startNotifications();
     characteristic?.addEventListener("characteristicvaluechanged", (e) => {
       // @ts-ignore
-      this.subscribers.forEach((c) => c(e.target.value.getUint8(2)));
+      const dataview: DataView = e.target.value;
+      const watts = new Int16Array(dataview.buffer)[1];
+      console.log(watts);
+      // @ts-ignore`
+      this.subscribers.forEach((c) => c(watts));
     });
   }
 }

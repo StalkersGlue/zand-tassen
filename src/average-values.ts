@@ -26,7 +26,7 @@ export class AverageValues extends LitElement {
       display: flex;
       color: white;
       justify-content: flex-end;
-      background-color: var(--bg);
+      background-color: var(--bg-power);
     }
 
     .flex-container {
@@ -50,6 +50,7 @@ export class AverageValues extends LitElement {
       font-size: 50px;
       padding: 6px;
       flex: 1;
+      background-color: var(--bg-heart-rate);
     }
 
     .cadence {
@@ -69,6 +70,9 @@ export class AverageValues extends LitElement {
 
   @property({ type: Number, attribute: "power-limit" })
   public powerLimit: number = 0;
+
+  @property({ type: Number, attribute: "heart-rate-limit" })
+  public heartRateLimit: number = 0;
 
   @internalProperty()
   private averageHeartRate: number = 0;
@@ -95,8 +99,12 @@ export class AverageValues extends LitElement {
       (statistics) => {
         this.averagePower = statistics.average;
         this.style.setProperty(
-          "--bg",
+          "--bg-power",
           this.averagePower > this.powerLimit ? "red" : "#0093d1"
+        );
+        this.style.setProperty(
+            "--bg-heart-rate",
+            this.averageHeartRate > this.heartRateLimit ? "red" : "#0093d1"
         );
       }
     );

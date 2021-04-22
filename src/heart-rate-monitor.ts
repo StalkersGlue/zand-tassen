@@ -97,9 +97,9 @@ export class HeartRateMonitor extends LitElement {
       );
 
       this.averageHeartRate = statistics.average;
-      this.timeSpanInSeconds = Math.floor(statistics.timeSpanInSeconds / 60);
+      // this.timeSpanInSeconds = Math.floor(statistics.timeSpanInSeconds / 60);
       this.totalEvents = statistics.total;
-      this.eventsPerSecond = statistics.eventsPerSecond;
+      // this.eventsPerSecond = statistics.eventsPerSecond;
     });
   }
 }

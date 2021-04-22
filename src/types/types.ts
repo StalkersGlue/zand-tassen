@@ -5,7 +5,7 @@ type Measurement = {
 
 type Statistics = {
   average: number;
-  timeSpanInSeconds: number;
-  eventsPerSecond: number;
+  // timeSpanInSeconds: number;
+  // eventsPerSecond: number;
   total: number;
 };

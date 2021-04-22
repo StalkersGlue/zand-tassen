@@ -58,7 +58,8 @@ export class ZandTassenApp extends LitElement {
     super();
     //Todo: fix this somewhere else
     this.weight = 88;
-    this.powerLimit = 300;
+    this.powerLimit = 250;
+    this.heartRateLimit = 60;
   }
 
   @internalProperty()
@@ -66,6 +67,9 @@ export class ZandTassenApp extends LitElement {
 
   @internalProperty()
   powerLimit: number;
+
+  @internalProperty()
+  heartRateLimit: number;
 
   render() {
     return html`
@@ -104,19 +108,30 @@ export class ZandTassenApp extends LitElement {
           <input type="number" disabled .value="${this._getWkgThreshold()}" />
           Power Threshold (W/Kg)
         </div>
+        <div>
+          <input 
+          type="number" 
+          .value="${this.heartRateLimit}" 
+          @input="${(e: any) => (this.heartRateLimit = e.target.value)}" 
+          />
+          Heart Rate Threshold (BPM)
+        </div>
       </div>
 
       <average-values
         timespan-in-minutes="5"
         power-limit="${this.powerLimit}"
+        heart-rate-limit="${this.heartRateLimit}"
       ></average-values>
       <average-values
         timespan-in-minutes="10"
         power-limit="${this.powerLimit}"
+        heart-rate-limit="${this.heartRateLimit}"
       ></average-values>
       <average-values
         timespan-in-minutes="20"
         power-limit="${this.powerLimit}"
+        heart-rate-limit="${this.heartRateLimit}"
       ></average-values>
     `;
   }
@@ -145,6 +160,7 @@ export class ZandTassenApp extends LitElement {
     const val = this.powerLimit / this.weight;
     return isFinite(val) ? val.toFixed(2) : 0;
   }
+
 }
 
 declare global {
